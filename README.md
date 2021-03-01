@@ -8,8 +8,7 @@
    * [Hyperparameter Tuning](#Hyperparameter-Tuning)
    * [Model Deployment](#Model-Deployment)
    * [Screen Recording](#Screen-Recording)
-   * [Comments and future improvements](#Comments-and-future-improvements)
-   * [Dataset Citation](#Dataset-Citation)
+   * [Comments and future improvements](#Comments-and-future-improvements)   
    * [References](#References)
 
 ***
@@ -74,7 +73,7 @@ The main task that I seek to solve with this project & dataset is to classify pa
 ### Access
 
 First, I made the data publicly accessible in the current GitHub repository via this link:
-[https://raw.githubusercontent.com/dimikara/heart-failure-prediction/master/heart_failure_clinical_records_dataset.csv](https://raw.githubusercontent.com/dimikara/heart-failure-prediction/master/heart_failure_clinical_records_dataset.csv)
+[https://raw.githubusercontent.com/ddgope/Udacity-Capstone-Heart-Failure-Prediction/master/heart_failure_clinical_records_dataset.csv](https://raw.githubusercontent.com/ddgope/Udacity-Capstone-Heart-Failure-Prediction/master/heart_failure_clinical_records_dataset.csv)
 
 and then create the dataset: 
 
@@ -494,20 +493,13 @@ I would love to further explore on this in order to create a model with higher a
 ![Notebook not available](img/10.JPG?raw=true "Notebook not available")
 
 
-## Dataset Citation
-
-Davide Chicco, Giuseppe Jurman: Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. [BMC Medical Informatics and Decision Making 20, 16 (2020)](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5).
-
-
 ## References
 
 - Udacity Nanodegree material
-- Research article: [Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5)
 - [Heart Failure Prediction Dataset](https://www.kaggle.com/andrewmvd/heart-failure-clinical-data)
 - [Consume an Azure Machine Learning model deployed as a web service](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-consume-web-service?tabs=python)
 - [Deploy machine learning models to Azure](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-and-where?tabs=azcli)
 - [A Review of Azure Automated Machine Learning (AutoML)](https://medium.com/microsoftazure/a-review-of-azure-automated-machine-learning-automl-5d2f98512406)
-- [The Holy Bible of Azure Machine Learning Service. A walk-through for the believer (Part 3)](https://santiagof.medium.com/the-holy-bible-of-azure-machine-learning-service-a-walk-through-for-the-believer-part-3-74fb7393fffc)
 - [What is Azure Container Instances (ACI)?](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
 - [AutoMLConfig Class](https://docs.microsoft.com/en-us/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig?view=azure-ml-py)
 - [Using Azure Machine Learning for Hyperparameter Optimization](https://dev.to/azure/using-azure-machine-learning-for-hyperparameter-optimization-3kgj)
@@ -516,7 +508,3 @@ Davide Chicco, Giuseppe Jurman: Machine learning can predict survival of patient
 - [Configure automated ML experiments in Python](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-auto-train)
 - [How Azure Machine Learning works: Architecture and concepts](https://docs.microsoft.com/en-us/azure/machine-learning/concept-azure-machine-learning-architecture)
 - [Configure data splits and cross-validation in automated machine learning](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cross-validation-data-splits)
-- [How Much Training Data is Required for Machine Learning?](https://machinelearningmastery.com/much-training-data-required-machine-learning/)
-- [How Can Machine Learning be Reliable When the Sample is Adequate for Only One Feature?](https://www.fharrell.com/post/ml-sample-size/)
-- [Modern modelling techniques are data hungry: a simulation study for predicting dichotomous endpoints](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/1471-2288-14-137)
-- [Predicting sample size required for classification performance](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/1472-6947-12-8)
