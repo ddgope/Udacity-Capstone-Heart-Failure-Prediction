@@ -17,7 +17,7 @@ from inference_schema.schema_decorators import input_schema, output_schema
 from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
 from inference_schema.parameter_types.pandas_parameter_type import PandasParameterType
 
-
+#Sending input as array to the Model
 input_sample = pd.DataFrame({"age": pd.Series([0.0], dtype="float64")
                              ,"anaemia": pd.Series([False], dtype="bool")
                              ,"creatinine_phosphokinase": pd.Series([0], dtype="int64")
@@ -44,7 +44,7 @@ def init():
     global model
     # This name is model.id of model that we want to deploy deserialize the model file back
     # into a sklearn model
-    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'model.pkl')
+    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'heart_disease_model.pkl')
     path = os.path.normpath(model_path)
     path_split = path.split(os.sep)
     log_server.update_custom_dimensions({'model_name': path_split[-3], 'model_version': path_split[-2]})
