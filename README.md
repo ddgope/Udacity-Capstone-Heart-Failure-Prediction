@@ -268,23 +268,14 @@ Any run that doesn't fall within the slack factor or slack amount of the evaluat
 ### Results
 #### Completion of the HyperDrive run (RunDetails widget):
 
-![HyperDrive run](img/11.JPG?raw=true "HyperDrive run")
+![HyperDrive run](img/h01.JPG?raw=true "HyperDrive run")
 
-![HyperDrive run](img/12.JPG?raw=true "HyperDrive run")
-
-![HyperDrive RunDetails widget](img/HyperDrive_RunDetails_widget.JPG?raw=true "HyperDrive RunDetails widget")
-
-Please also see this video [here](https://youtu.be/WJWOOmHEOFg) where we can see that the RunDetails widget is enabled and the experiment is logging during its run until it shows 'Completed'. 
 
 #### Best model
 
 After the completion, we can see and get the metrics and details of the best run:
 
-![Best run metrics and details](img/15.JPG?raw=true "Best run metrics and details")
-
-![HyperDrive run hyperparameters](img/14.JPG?raw=true "HyperDrive run hyperparameters")
-
-![HyperDrive run hyperparameters](img/16.JPG?raw=true "HyperDrive run hyperparameters")
+![HyperDrive run hyperparameters](img/h02.JPG?raw=true "HyperDrive run hyperparameters")
 
 Best model overview:
 
@@ -299,17 +290,15 @@ Best model overview:
 
 _HyperDrive model_
 
-![HyperDrive model](img/17.JPG?raw=true "HyperDrive model")
-
-![HyperDrive model](img/46.JPG?raw=true "HyperDrive model")
+![HyperDrive model](img/h03.JPG?raw=true "HyperDrive model")
 
 _Best model data and details_
 
-![Best model details](img/47.JPG?raw=true "Best model details")
+![Best model details](img/h04.JPG?raw=true "Best model details")
 
 _Best model metrics_
 
-![Best model metrics](img/20.JPG?raw=true "Best model metrics")
+![Best model metrics](img/h05.JPG?raw=true "Best model metrics")
 
 ## Model Deployment
 
