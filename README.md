@@ -1,4 +1,4 @@
-# Using Machine Learning to Predict Survival of Patients with Heart Failure
+# Heart Failure Predication uisng Azure ML
 
 ## Table of contents
    * [Overview](#Overview)
@@ -35,7 +35,7 @@ The following files are also necessary:
 
 - `heart_failure_clinical_records_dataset.csv`: the dataset file. It can also be taken directly from Kaggle; 
 - `train.py`: a basic script for manipulating the data used in the HyperDrive experiment;
-- `scoring_file_v_1_0_0.py`: the script used to deploy the model which is downloaded from within Azure Machine Learning Studio; &
+- `score.py`: the script used to deploy the model which is downloaded from within Azure Machine Learning Studio; &
 - `env.yml`: the environment file which is also downloaded from within Azure Machine Learning Studio.
 
 
@@ -82,7 +82,7 @@ and then create the dataset:
 As it is depicted below, the dataset is registered in Azure Machine Learning Studio:
 
 ***Registered datasets:*** _Dataset heart-failure-prediction registered_
-![Registered datasets](img/04.JPG?raw=true "heart-failure-prediction dataset registered")
+![Registered datasets](img/01.JPG?raw=true "heart-failure-prediction dataset registered")
 
 I am also accessing the data directly via:
 
@@ -92,9 +92,6 @@ data = pd.read_csv('./heart_failure_clinical_records_dataset.csv')
 ## Automated ML
 
 ***AutoML settings and configuration:***
-
-![AutoML settings & configuration](img/50.JPG?raw=true "AutoML settings & configuration")
-
 Below you can see an overview of the `automl` settings and configuration I used for the AutoML run:
 
 ```
@@ -181,30 +178,18 @@ I chose not to enable enforcing the ONNX-compatible models at this stage. Howeve
 
 During the AutoML run, the _Data Guardrails_ are run when automatic featurization is enabled. As we can see in the screenshot below, the dataset passed all three checks:
 
-***Data Guardrails Checks in the Notebook***
-![Data Guardrails Checks](img/40B.JPG?raw=true "Data Guardrails Checks in the Notebook")
-
 ***Data Guardrails Checks in Azure Machine Learning Studio***
-![Data Guardrails Checks](img/40.JPG?raw=true "Data Guardrails Checks in Azure Machine Learning Studio")
-
-
-#### Completion of the AutoML run (RunDetails widget): 
-
-![AutoML completed](img/21.JPG?raw=true "AutoML completed: RunDetails widget")
-
-![AutoML completed](img/21B.JPG?raw=true "AutoML completed: RunDetails widget")
-
-![AutoML run models](img/51.JPG?raw=true "AutoML run models")
+![Data Guardrails Checks](img/10.JPG?raw=true "Data Guardrails Checks in Azure Machine Learning Studio")
 
 #### Best model
 
 After the completion, we can see and take the metrics and details of the best run:
 
-![Best run metrics and details](img/54.JPG?raw=true "Best run metrics and details")
+![Best run metrics and details](img/11.JPG?raw=true "Best run metrics and details")
 
-![Best run properties](img/55.JPG?raw=true "Best run properties")
+![Best run properties](img/12.JPG?raw=true "Best run properties")
 
-![Fitted model parameters](img/56.JPG?raw=true "Fitted model parameters")
+![Fitted model parameters](img/13.JPG?raw=true "Fitted model parameters")
 
 Best model results:
 
@@ -220,7 +205,7 @@ Best model results:
 
 _AutoML models_
 
-![AutoML models](img/41.JPG?raw=true "AutoML models")
+![AutoML models](img/20.JPG?raw=true "AutoML models")
 
 _Best model data_
 
@@ -232,9 +217,9 @@ _Best model metrics_
 
 _Charts_
 
-![Best model metrics - Charts](img/42.JPG?raw=true "Best model metrics - Charts")
+![Best model metrics - Charts](img/13.JPG?raw=true "Best model metrics - Charts")
 
-![Best model metrics - Charts](img/43.JPG?raw=true "Best model metrics - Charts")
+![Best model metrics - Charts](img/14.JPG?raw=true "Best model metrics - Charts")
 
 _Aggregate feature importance_
 
