@@ -1,4 +1,4 @@
-# Heart Failure Predication uisng Azure ML
+# Heart Failure Predication using Azure ML
 ## Table of contents
    * [Overview](#Overview)
    * [Project Set Up and Installation](#Project-Set-Up-and-Installation)
