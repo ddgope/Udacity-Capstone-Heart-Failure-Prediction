@@ -191,17 +191,41 @@ After the completion, we can see and take the metrics and details of the best ru
 
 ![Fitted model parameters](img/13.JPG?raw=true "Fitted model parameters")
 
+Best model results:
+
+| AutoML Model | |
+| :---: | :---: |
+| id | AutoML_213153bb-f0e4-4be9-b265-6bbad4f0f9e4_40 |
+| Accuracy | 0.8595525727069351 |
+| AUC_weighted | 0.9087491748331944 |
+| Algorithm | VotingEnsemble |
+
+
 ***Screenshots from Azure ML Studio***
 
 _AutoML models_
 
 ![AutoML models](img/20.JPG?raw=true "AutoML models")
 
+_Best model data_
+
+![Best model data](img/39.JPG?raw=true "Best model data")
+
+_Best model metrics_
+
+![Best model metrics](img/38.JPG?raw=true "Best model metrics")
+
 _Charts_
 
 ![Best model metrics - Charts](img/13.JPG?raw=true "Best model metrics - Charts")
 
 ![Best model metrics - Charts](img/14.JPG?raw=true "Best model metrics - Charts")
+
+_Aggregate feature importance_
+
+![Best model metrics - Charts](img/44.JPG?raw=true "Best model metrics - Charts")
+
+As we can see, **time** is by far the **most important factor**, followed by serum creatinine and ejection fraction.
 
 ## Hyperparameter Tuning
 
@@ -253,6 +277,14 @@ After the completion, we can see and get the metrics and details of the best run
 
 ![HyperDrive run hyperparameters](img/h02.JPG?raw=true "HyperDrive run hyperparameters")
 
+Best model overview:
+
+| HyperDrive Model | |
+| :---: | :---: |
+| id | HD_debd4c29-658d-4280-b761-2308b5eff7e4_1 |
+| Accuracy | 0.8333333333333334 |
+| --C | 0.01 |
+| --max_iter | 300 |
 
 ***Screenshots from Azure ML Studio***
 
@@ -285,26 +317,35 @@ Using as basis the `accuracy` metric, we can state that the best AutoML model is
 
 _Registered models in Azure Machine Learning Studio_
 
-![Registered models](img/R01.JPG?raw=true "Registered models")
+![Registered models](img/23.JPG?raw=true "Registered models")
 
 _Runs of the experiment_
 
-![Runs of the experiment](img/R02.JPG?raw=true "Runs of the experiment")
+![Runs of the experiment](img/25.JPG?raw=true "Runs of the experiment")
+
+![Best model deployment](img/22.JPG?raw=true "Best model deployment")
 
 ### Inference configuration
 
-The inference configuration defines the environment used to run the deployed model. An Azure Machine Learning environment, named `env.yml` in this case. The environment defines the software dependencies needed to run the model and entry script.
+The inference configuration defines the environment used to run the deployed model. The inference configuration includes two entities, which are used to run the model when it's deployed:
+
+![Inference configuration](img/62.JPG?raw=true "Inference configuration")
+
+- An entry script, named `scoring_file_v_1_0_0.py`.
+- An Azure Machine Learning environment, named `env.yml` in this case. The environment defines the software dependencies needed to run the model and entry script.
+
+![Inference configuration](img/63.JPG?raw=true "Inference configuration")
 
 ### Entry script
 
-The entry script is the `score.py` file. The entry script loads the model when the deployed service starts and it is also responsible for receiving data, passing it to the model, and then returning a response.
+The entry script is the `scoring_file_v_1_0_0.py` file. The entry script loads the model when the deployed service starts and it is also responsible for receiving data, passing it to the model, and then returning a response.
 ### Compute target
 
 As compute target, I chose the Azure Container Instances (ACI) service, which is used for low-scale CPU-based workloads that require less than 48 GB of RAM.
 
 The AciWebservice Class represents a machine learning model deployed as a web service endpoint on Azure Container Instances. The deployed service is created from the model, script, and associated files, as I explain above. The resulting web service is a load-balanced, HTTP endpoint with a REST API. We can send data to this API and receive the prediction returned by the model.
 
-![Compute target](img/C01.JPG?raw=true "Compute target")
+![Compute target](img/64.JPG?raw=true "Compute target")
 
 `cpu_cores` : It is the number of CPU cores to allocate for this Webservice. Can also be a decimal.
 
@@ -317,28 +358,34 @@ The AciWebservice Class represents a machine learning model deployed as a web se
 
 Bringing all of the above together, here is the actual deployment in action:
 
-![Model deployment](img/MD01.JPG?raw=true "Model deployment")
+![Model deployment](img/61.JPG?raw=true "Model deployment")
 
 _Best AutoML model deployed (Azure Machine Learning Studio)_
 
-![Best model deployment](img/BM01.JPG?raw=true "Best model deployment")
+![Best AutoML model deployed successfully](img/26.JPG?raw=true "Best AutoML model deployed successfully")
+
+![Best AutoML model deployed successfully](img/27.JPG?raw=true "Best AutoML model deployed successfully")
 
 Deployment takes some time to conclude, but when it finishes successfully the ACI web service has a status of ***Healthy*** and the model is deployed correctly. We can now move to the next step of actually testing the endpoint.
 ### Consuming/testing the endpoint (ACI service)
 
 _Endpoint (Azure Machine Learning Studio)_
 
-![ACI service](img/ACI01.JPG?raw=true "ACI service")
+![ACI service](img/28.JPG?raw=true "ACI service")
 
 After the successful deployment of the model and with a _Healthy_ service, I can print the _scoring URI_, the _Swagger URI_ and the _primary authentication key_:
 
-![ACI service status and data](img/ACI02.JPG?raw=true "ACI service status and data")
+![ACI service status and data](img/35.JPG?raw=true "ACI service status and data")
+
+The same info can be retrieved from Azure Machine Learning Studio as well:
+
+![ACI service details](img/33.JPG?raw=true "ACI service details")
 
 The scoring URI can be used by clients to submit requests to the service.
 
 In order to test the deployed model, I use a _Python_ file, named `endpoint.py`:
 
-![endpoint.py file](img/ACI03.JPG?raw=true "endpoint.py file")
+![endpoint.py file](img/31.JPG?raw=true "endpoint.py file")
 
 In the beginning, I fill in the `scoring_uri` and `key` with the data of the _aciservice_ printed above. We can test our deployed service, using test data in JSON format, to make sure the web service returns a result.
 
@@ -354,21 +401,35 @@ In order to request data, the REST API expects the body of the request to be a J
 ```
 In our case:
 
-![Data structure](img/ACI04.jfif?raw=true "Data structure")
+![Data structure](img/65.JPG?raw=true "Data structure")
 
 The data is then converted to JSON string format:
 
-![Conversion to JSON string format](img/JSON1.JPG?raw=true "Conversion to JSON string format")
+![Conversion to JSON string format](img/66.JPG?raw=true "Conversion to JSON string format")
 
 We set the content type:
 
-![Setting the content type](img/ACI06.jfif?raw=true "Setting the content type")
+![Setting the content type](img/67.JPG?raw=true "Setting the content type")
 
 Finally, we make the request and print the response on screen:
 
-![Request and response](img/ACI07.jfif?raw=true "Request and response")
+![Request and response](img/68.JPG?raw=true "Request and response")
 
+I execute Cell 21 and, based on the above, I expect to get a response in the format of `true` or `false`:
 
+![Running endpoint.py file within the cell](img/32.JPG?raw=true "Running endpoint.py file within the cell")
+
+In order to test the deployed service, one could use the above file by inserting data in the `endpoint.py` file, saving it, and then run the relevant cell in the `automl.ipynb` Jupyter Notebook.
+
+**Another way** would be using the Swagger URI of the deployed service and the [Swagger UI](https://swagger.io/tools/swagger-ui/).
+
+**A third way** would also be to use Azure Machine Learning Studio. Go to the _Endpoints_ section, choose _aciservice_ and click on the tab _Test_:
+
+![Testing ACI service in Azure ML Studio](img/52.JPG?raw=true "Testing ACI service in Azure ML Studio")
+
+Fill in the empty fields with the medical data you want to get a prediction for and click _Test_:
+
+![Getting response](img/53.JPG?raw=true "Getting response")
 
 
 ## Screen Recording
@@ -398,6 +459,12 @@ More specifically, the screencast demonstrates:
 I would love to further explore on this in order to create a model with higher accuracy that would give better and more reliable results, with potential practical benefits in the field of medicine.  
 
 * The question of how much training data is required for machine learning is always valid and, by all means, the dataset used here is rather small and geographically limited: it contains the medical records of only 299 patients and comes from only a specific geographical area. Increasing the sample size can mean higher level of accuracy and more reliable results. Plus, a dataset including data from patients from around the world would also be more reliable as it would compensate for factors specific to geographical regions.
+
+* Finally, although cheerful and taking into account gender equality, it would be great not to stumble upon issues like this:
+
+![Notebook not available](img/09.JPG?raw=true "Notebook not available")
+
+![Notebook not available](img/10.JPG?raw=true "Notebook not available")
 
 
 ## References
