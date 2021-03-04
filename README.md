@@ -354,15 +354,15 @@ In order to request data, the REST API expects the body of the request to be a J
 ```
 In our case:
 
-![Data structure](img/ACI04.jfif.JPG?raw=true "Data structure")
+![Data structure](img/ACI04.jfif?raw=true "Data structure")
 
 The data is then converted to JSON string format:
 
-![Conversion to JSON string format](img/ACI05.jfif?raw=true "Conversion to JSON string format")
+![Conversion to JSON string format](img/JSON1.jpg?raw=true "Conversion to JSON string format")
 
 We set the content type:
 
-![Setting the content type](img/ACI07.jfif?raw=true "Setting the content type")
+![Setting the content type](img/ACI06.jfif?raw=true "Setting the content type")
 
 Finally, we make the request and print the response on screen:
 
