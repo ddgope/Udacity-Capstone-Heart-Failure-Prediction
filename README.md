@@ -241,7 +241,7 @@ Finally, we make the request and print the response on screen:
 ![Request and response](img/ACI07.jfif?raw=true "Request and response")
 
 ## Screen Recording
-The screen recording can be found [here](https://youtu.be/5tuz2Itq0Ms) and it shows the project in action. 
+The screen recording can be found [here](https://youtu.be/gFxeAVxdrUc) and it shows the project in action. 
 More specifically, the screencast demonstrates:
 - A working model
 - Demo of the deployed  model
