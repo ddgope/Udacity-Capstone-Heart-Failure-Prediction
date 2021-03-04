@@ -207,25 +207,11 @@ _AutoML models_
 
 ![AutoML models](img/20.JPG?raw=true "AutoML models")
 
-_Best model data_
-
-![Best model data](img/39.JPG?raw=true "Best model data")
-
-_Best model metrics_
-
-![Best model metrics](img/38.JPG?raw=true "Best model metrics")
-
 _Charts_
 
 ![Best model metrics - Charts](img/13.JPG?raw=true "Best model metrics - Charts")
 
 ![Best model metrics - Charts](img/14.JPG?raw=true "Best model metrics - Charts")
-
-_Aggregate feature importance_
-
-![Best model metrics - Charts](img/44.JPG?raw=true "Best model metrics - Charts")
-
-As we can see, **time** is by far the **most important factor**, followed by serum creatinine and ejection fraction.
 
 ## Hyperparameter Tuning
 
