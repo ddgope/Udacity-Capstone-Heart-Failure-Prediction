@@ -358,7 +358,7 @@ In our case:
 
 The data is then converted to JSON string format:
 
-![Conversion to JSON string format](img/JSON1.jpg?raw=true "Conversion to JSON string format")
+![Conversion to JSON string format](img/JSON1.JPG?raw=true "Conversion to JSON string format")
 
 We set the content type:
 
