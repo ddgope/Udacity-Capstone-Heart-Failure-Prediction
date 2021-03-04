@@ -77,24 +77,25 @@ data = pd.read_csv('./heart_failure_clinical_records_dataset.csv')
 Below you can see an overview of the `automl` settings and configuration I used for the AutoML run:
 ```
 automl_settings = {"n_cross_validations": 2,
-                   "primary_metric": 'accuracy',
-                   "enable_early_stopping": True,
-                   "max_concurrent_iterations": 4,
-                   "experiment_timeout_minutes": 20,
-                   "verbosity": logging.INFO
-                  }
+                    "primary_metric": 'accuracy',
+                    "enable_early_stopping": True,
+                    "max_concurrent_iterations": 4,
+                    "experiment_timeout_minutes": 25,
+                    "blocked_models":['XGBoostClassifier'],
+                    "verbosity": logging.INFO                   
+                    }
 ```
 ```
 automl_config = AutoMLConfig(compute_target = compute_target,
-                             task = 'classification',
-                             training_data = dataset,
-                             label_column_name = 'DEATH_EVENT',
-                             path = project_folder,
-                             featurization = 'auto',
-                             debug_log = 'automl_errors.log,
-                             enable_onnx_compatible_models = False
-                             **automl_settings
-                             )
+                            task='classification',
+                            training_data=dataset,
+                            label_column_name='DEATH_EVENT',
+                            path = project_folder,
+                            featurization= 'auto',
+                            debug_log = "automl_errors.log",
+                            enable_onnx_compatible_models=False,                            
+                            **automl_settings
+                            )
 ```
 `"n_cross_validations": 2`
 This parameter sets how many cross validations to perform, based on the same number of folds (number of subsets). As one cross-validation could result in overfit, in my code I chose 2 folds for cross-validation; thus the metrics are calculated with the average of the 2 validation metrics.
@@ -271,7 +272,7 @@ In our case:
 ![Data structure](img/ACI04.jfif?raw=true "Data structure")
 
 The data is then converted to JSON string format:
-![Conversion to JSON string format](img/JSON1.jpg?raw=true "Conversion to JSON string format")
+![Conversion to JSON string format](img/JSON1.JPG?raw=true "Conversion to JSON string format")
 
 We set the content type:
 ![Setting the content type](img/ACI07.jfif?raw=true "Setting the content type")
