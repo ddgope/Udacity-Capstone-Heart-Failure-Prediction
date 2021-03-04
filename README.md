@@ -291,8 +291,6 @@ _Runs of the experiment_
 
 ![Runs of the experiment](img/R02.JPG?raw=true "Runs of the experiment")
 
-![Best model deployment](img/BM01.JPG?raw=true "Best model deployment")
-
 ### Inference configuration
 
 The inference configuration defines the environment used to run the deployed model. An Azure Machine Learning environment, named `env.yml` in this case. The environment defines the software dependencies needed to run the model and entry script.
@@ -323,30 +321,24 @@ Bringing all of the above together, here is the actual deployment in action:
 
 _Best AutoML model deployed (Azure Machine Learning Studio)_
 
-![Best AutoML model deployed successfully](img/26.JPG?raw=true "Best AutoML model deployed successfully")
-
-![Best AutoML model deployed successfully](img/27.JPG?raw=true "Best AutoML model deployed successfully")
+![Best model deployment](img/BM01.JPG?raw=true "Best model deployment")
 
 Deployment takes some time to conclude, but when it finishes successfully the ACI web service has a status of ***Healthy*** and the model is deployed correctly. We can now move to the next step of actually testing the endpoint.
 ### Consuming/testing the endpoint (ACI service)
 
 _Endpoint (Azure Machine Learning Studio)_
 
-![ACI service](img/28.JPG?raw=true "ACI service")
+![ACI service](img/ACI01.JPG?raw=true "ACI service")
 
 After the successful deployment of the model and with a _Healthy_ service, I can print the _scoring URI_, the _Swagger URI_ and the _primary authentication key_:
 
-![ACI service status and data](img/35.JPG?raw=true "ACI service status and data")
-
-The same info can be retrieved from Azure Machine Learning Studio as well:
-
-![ACI service details](img/33.JPG?raw=true "ACI service details")
+![ACI service status and data](img/ACI02.JPG?raw=true "ACI service status and data")
 
 The scoring URI can be used by clients to submit requests to the service.
 
 In order to test the deployed model, I use a _Python_ file, named `endpoint.py`:
 
-![endpoint.py file](img/31.JPG?raw=true "endpoint.py file")
+![endpoint.py file](img/ACI03.JPG?raw=true "endpoint.py file")
 
 In the beginning, I fill in the `scoring_uri` and `key` with the data of the _aciservice_ printed above. We can test our deployed service, using test data in JSON format, to make sure the web service returns a result.
 
@@ -362,15 +354,15 @@ In order to request data, the REST API expects the body of the request to be a J
 ```
 In our case:
 
-![Data structure](img/65.JPG?raw=true "Data structure")
+![Data structure](img/ACI04.jfif.JPG?raw=true "Data structure")
 
 The data is then converted to JSON string format:
 
-![Conversion to JSON string format](img/66.JPG?raw=true "Conversion to JSON string format")
+![Conversion to JSON string format](img/ACI05.jfif?raw=true "Conversion to JSON string format")
 
 We set the content type:
 
-![Setting the content type](img/67.JPG?raw=true "Setting the content type")
+![Setting the content type](img/ACI06.jfif?raw=true "Setting the content type")
 
 Finally, we make the request and print the response on screen:
 
