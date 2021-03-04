@@ -362,27 +362,13 @@ The data is then converted to JSON string format:
 
 We set the content type:
 
-![Setting the content type](img/ACI06.jfif?raw=true "Setting the content type")
+![Setting the content type](img/ACI07.jfif?raw=true "Setting the content type")
 
 Finally, we make the request and print the response on screen:
 
-![Request and response](img/68.JPG?raw=true "Request and response")
+![Request and response](img/ACI07.jfif?raw=true "Request and response")
 
-I execute Cell 21 and, based on the above, I expect to get a response in the format of `true` or `false`:
 
-![Running endpoint.py file within the cell](img/32.JPG?raw=true "Running endpoint.py file within the cell")
-
-In order to test the deployed service, one could use the above file by inserting data in the `endpoint.py` file, saving it, and then run the relevant cell in the `automl.ipynb` Jupyter Notebook.
-
-**Another way** would be using the Swagger URI of the deployed service and the [Swagger UI](https://swagger.io/tools/swagger-ui/).
-
-**A third way** would also be to use Azure Machine Learning Studio. Go to the _Endpoints_ section, choose _aciservice_ and click on the tab _Test_:
-
-![Testing ACI service in Azure ML Studio](img/52.JPG?raw=true "Testing ACI service in Azure ML Studio")
-
-Fill in the empty fields with the medical data you want to get a prediction for and click _Test_:
-
-![Getting response](img/53.JPG?raw=true "Getting response")
 
 
 ## Screen Recording
@@ -412,12 +398,6 @@ More specifically, the screencast demonstrates:
 I would love to further explore on this in order to create a model with higher accuracy that would give better and more reliable results, with potential practical benefits in the field of medicine.  
 
 * The question of how much training data is required for machine learning is always valid and, by all means, the dataset used here is rather small and geographically limited: it contains the medical records of only 299 patients and comes from only a specific geographical area. Increasing the sample size can mean higher level of accuracy and more reliable results. Plus, a dataset including data from patients from around the world would also be more reliable as it would compensate for factors specific to geographical regions.
-
-* Finally, although cheerful and taking into account gender equality, it would be great not to stumble upon issues like this:
-
-![Notebook not available](img/09.JPG?raw=true "Notebook not available")
-
-![Notebook not available](img/10.JPG?raw=true "Notebook not available")
 
 
 ## References
