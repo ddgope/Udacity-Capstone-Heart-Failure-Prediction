@@ -191,16 +191,6 @@ After the completion, we can see and take the metrics and details of the best ru
 
 ![Fitted model parameters](img/13.JPG?raw=true "Fitted model parameters")
 
-Best model results:
-
-| AutoML Model | |
-| :---: | :---: |
-| id | AutoML_213153bb-f0e4-4be9-b265-6bbad4f0f9e4_40 |
-| Accuracy | 0.8595525727069351 |
-| AUC_weighted | 0.9087491748331944 |
-| Algorithm | VotingEnsemble |
-
-
 ***Screenshots from Azure ML Studio***
 
 _AutoML models_
@@ -263,14 +253,6 @@ After the completion, we can see and get the metrics and details of the best run
 
 ![HyperDrive run hyperparameters](img/h02.JPG?raw=true "HyperDrive run hyperparameters")
 
-Best model overview:
-
-| HyperDrive Model | |
-| :---: | :---: |
-| id | HD_debd4c29-658d-4280-b761-2308b5eff7e4_1 |
-| Accuracy | 0.8333333333333334 |
-| --C | 0.01 |
-| --max_iter | 300 |
 
 ***Screenshots from Azure ML Studio***
 
@@ -303,35 +285,28 @@ Using as basis the `accuracy` metric, we can state that the best AutoML model is
 
 _Registered models in Azure Machine Learning Studio_
 
-![Registered models](img/23.JPG?raw=true "Registered models")
+![Registered models](img/R01.JPG?raw=true "Registered models")
 
 _Runs of the experiment_
 
-![Runs of the experiment](img/25.JPG?raw=true "Runs of the experiment")
+![Runs of the experiment](img/R02.JPG?raw=true "Runs of the experiment")
 
-![Best model deployment](img/22.JPG?raw=true "Best model deployment")
+![Best model deployment](img/BM01.JPG?raw=true "Best model deployment")
 
 ### Inference configuration
 
-The inference configuration defines the environment used to run the deployed model. The inference configuration includes two entities, which are used to run the model when it's deployed:
-
-![Inference configuration](img/62.JPG?raw=true "Inference configuration")
-
-- An entry script, named `scoring_file_v_1_0_0.py`.
-- An Azure Machine Learning environment, named `env.yml` in this case. The environment defines the software dependencies needed to run the model and entry script.
-
-![Inference configuration](img/63.JPG?raw=true "Inference configuration")
+The inference configuration defines the environment used to run the deployed model. An Azure Machine Learning environment, named `env.yml` in this case. The environment defines the software dependencies needed to run the model and entry script.
 
 ### Entry script
 
-The entry script is the `scoring_file_v_1_0_0.py` file. The entry script loads the model when the deployed service starts and it is also responsible for receiving data, passing it to the model, and then returning a response.
+The entry script is the `score.py` file. The entry script loads the model when the deployed service starts and it is also responsible for receiving data, passing it to the model, and then returning a response.
 ### Compute target
 
 As compute target, I chose the Azure Container Instances (ACI) service, which is used for low-scale CPU-based workloads that require less than 48 GB of RAM.
 
 The AciWebservice Class represents a machine learning model deployed as a web service endpoint on Azure Container Instances. The deployed service is created from the model, script, and associated files, as I explain above. The resulting web service is a load-balanced, HTTP endpoint with a REST API. We can send data to this API and receive the prediction returned by the model.
 
-![Compute target](img/64.JPG?raw=true "Compute target")
+![Compute target](img/C01.JPG?raw=true "Compute target")
 
 `cpu_cores` : It is the number of CPU cores to allocate for this Webservice. Can also be a decimal.
 
@@ -344,7 +319,7 @@ The AciWebservice Class represents a machine learning model deployed as a web se
 
 Bringing all of the above together, here is the actual deployment in action:
 
-![Model deployment](img/61.JPG?raw=true "Model deployment")
+![Model deployment](img/MD01.JPG?raw=true "Model deployment")
 
 _Best AutoML model deployed (Azure Machine Learning Studio)_
 
