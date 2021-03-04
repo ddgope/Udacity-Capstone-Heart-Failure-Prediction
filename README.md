@@ -14,7 +14,7 @@
 The current project uses machine learning to predict patients’ survival based on their medical data. 
 I create two models in the environment of Azure Machine Learning Studio: one using Automated Machine Learning (i.e. AutoML) and one customized model whose hyperparameters are tuned using HyperDrive. I then compare the performance of both models and deploy the best performing model as a service using Azure Container Instances (ACI).
 The diagram below is a visualization of the rough overview of the operations that take place in this project:
-![Project Workflow](img/Project_workflow.JPG?raw=true "Project Workflow") 
+![Project Workflow](img/final_project_workflow.JPG?raw=true "Project Workflow") 
 
 Equivalent typical Azure ML Architecture as below:
 ![Azure Architecture](img/azure_architecture.JPG?raw=true "Azure ML Project Workflow") 
@@ -38,7 +38,7 @@ The dataset used is taken from [Kaggle](https://www.kaggle.com/andrewmvd/heart-f
 
 The dataset contains 13 features:
 | Feature | Explanation | Measurement |
-| :---: | :---: | :---: |
+| :--- | :--- | :--- |
 | *age* | Age of patient | Years (40-95) |
 | *anaemia* | Decrease of red blood cells or hemoglobin | Boolean (0=No, 1=Yes) |
 | *creatinine-phosphokinase* | Level of the CPK enzyme in the blood | mcg/L |
@@ -98,50 +98,73 @@ automl_config = AutoMLConfig(compute_target = compute_target,
 ```
 `"n_cross_validations": 2`
 This parameter sets how many cross validations to perform, based on the same number of folds (number of subsets). As one cross-validation could result in overfit, in my code I chose 2 folds for cross-validation; thus the metrics are calculated with the average of the 2 validation metrics.
+
 `"primary_metric": 'accuracy'`
 I chose accuracy as the primary metric as it is the default metric used for classification tasks.
+
 `"enable_early_stopping": True`
 It defines to enable early termination if the score is not improving in the short term. In this experiment, it could also be omitted because the _experiment_timeout_minutes_ is already defined below.
+
 `"max_concurrent_iterations": 4`
 It represents the maximum number of iterations that would be executed in parallel.
+
 `"experiment_timeout_minutes": 20`
 This is an exit criterion and is used to define how long, in minutes, the experiment should continue to run. To help avoid experiment time out failures, I used the value of 20 minutes.
+
 `"verbosity": logging.INFO`
 The verbosity level for writing to the log file.
+
 `compute_target = compute_target`
 The Azure Machine Learning compute target to run the Automated Machine Learning experiment on.
+
 `task = 'classification'`
 This defines the experiment type which in this case is classification. Other options are _regression_ and _forecasting_.
+
 `training_data = dataset`
 The training data to be used within the experiment. It should contain both training features and a label column - see next parameter.
+
 `label_column_name = 'DEATH_EVENT'` 
 The name of the label column i.e. the target column based on which the prediction is done.
+
 `path = project_folder`
 The full path to the Azure Machine Learning project folder.
+
 `featurization = 'auto'`
 This parameter defines whether featurization step should be done automatically as in this case (_auto_) or not (_off_).
+
 `debug_log = 'automl_errors.log`
 The log file to write debug information to.
+
 `enable_onnx_compatible_models = False`
 I chose not to enable enforcing the ONNX-compatible models at this stage. However, I will try it in the future. For more info on Open Neural Network Exchange (ONNX), please see [here](https://docs.microsoft.com/en-us/azure/machine-learning/concept-onnx).
+
 ### Results
 During the AutoML run, the _Data Guardrails_ are run when automatic featurization is enabled. As we can see in the screenshot below, the dataset passed all three checks:
+
 ***Data Guardrails Checks in Azure Machine Learning Studio***
 ![Data Guardrails Checks](img/10.JPG?raw=true "Data Guardrails Checks in Azure Machine Learning Studio")
+
 #### Best model
 After the completion, we can see and take the metrics and details of the best run:
 ![Best run metrics and details](img/11.JPG?raw=true "Best run metrics and details")
+
 ![Best run properties](img/12.JPG?raw=true "Best run properties")
+
 ![Fitted model parameters](img/13.JPG?raw=true "Fitted model parameters")
+
 ***Screenshots from Azure ML Studio***
 _AutoML models_
 ![AutoML models](img/20.JPG?raw=true "AutoML models")
+
 _Charts_
 ![Best model metrics - Charts](img/13.JPG?raw=true "Best model metrics - Charts")
+
 ![Best model metrics - Charts](img/14.JPG?raw=true "Best model metrics - Charts")
+
 ## Hyperparameter Tuning
 For this experiment I am using a custom Scikit-learn Logistic Regression model, whose hyperparameters I am optimising using HyperDrive. Logistic regression is best suited for binary classification models like this one and this is the main reason I chose it.
 I specify the parameter sampler using the parameters C and max_iter and chose discrete values with choice for both parameters.
+
 **Parameter sampler**
 I specified the parameter sampler as such:
 ```
@@ -155,27 +178,37 @@ ps = RandomParameterSampling(
 I chose discrete values with _choice_ for both parameters, _C_ and _max_iter_.
 _C_ is the Regularization while _max_iter_ is the maximum number of iterations.
 _RandomParameterSampling_ is one of the choices available for the sampler and I chose it because it is the faster and supports early termination of low-performance runs. If budget is not an issue, we could use _GridParameterSampling_ to exhaustively search over the search space or _BayesianParameterSampling_ to explore the hyperparameter space. 
+
 **Early stopping policy**
 An early stopping policy is used to automatically terminate poorly performing runs thus improving computational efficiency. I chose the _BanditPolicy_ which I specified as follows:
 ```
 policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
 ```
+
 _evaluation_interval_: This is optional and represents the frequency for applying the policy. Each time the training script logs the primary metric counts as one interval.
+
 _slack_factor_: The amount of slack allowed with respect to the best performing training run. This factor specifies the slack as a ratio.
 Any run that doesn't fall within the slack factor or slack amount of the evaluation metric with respect to the best performing run will be terminated. This means that with this policy, the best performing runs will execute until they finish and this is the reason I chose it.
+
 ### Results
-#### Completion of the HyperDrive run (RunDetails widget):
+
+#### Completion of the HyperDrive Run:
 ![HyperDrive run](img/h01.JPG?raw=true "HyperDrive run")
+
 #### Best model
 After the completion, we can see and get the metrics and details of the best run:
 ![HyperDrive run hyperparameters](img/h02.JPG?raw=true "HyperDrive run hyperparameters")
+
 ***Screenshots from Azure ML Studio***
 _HyperDrive model_
 ![HyperDrive model](img/h03.JPG?raw=true "HyperDrive model")
+
 _Best model data and details_
 ![Best model details](img/h04.JPG?raw=true "Best model details")
+
 _Best model metrics_
 ![Best model metrics](img/h05.JPG?raw=true "Best model metrics")
+
 ## Model Deployment
 The deployment is done following the steps below:
 * Selection of an already registered model
@@ -184,16 +217,21 @@ The deployment is done following the steps below:
 * Choosing a compute target
 * Deployment of the model
 * Testing the resulting web service
+
 ### Registered model
 Using as basis the `accuracy` metric, we can state that the best AutoML model is superior to the best model that resulted from the HyperDrive run. For this reason, I choose to deploy the best model from AutoML run (`best_run_automl.pkl`, Version 2). 
 _Registered models in Azure Machine Learning Studio_
 ![Registered models](img/R01.JPG?raw=true "Registered models")
+
 _Runs of the experiment_
 ![Runs of the experiment](img/R02.JPG?raw=true "Runs of the experiment")
+
 ### Inference configuration
 The inference configuration defines the environment used to run the deployed model. An Azure Machine Learning environment, named `env.yml` in this case. The environment defines the software dependencies needed to run the model and entry script.
+
 ### Entry script
 The entry script is the `score.py` file. The entry script loads the model when the deployed service starts and it is also responsible for receiving data, passing it to the model, and then returning a response.
+
 ### Compute target
 As compute target, I chose the Azure Container Instances (ACI) service, which is used for low-scale CPU-based workloads that require less than 48 GB of RAM.
 The AciWebservice Class represents a machine learning model deployed as a web service endpoint on Azure Container Instances. The deployed service is created from the model, script, and associated files, as I explain above. The resulting web service is a load-balanced, HTTP endpoint with a REST API. We can send data to this API and receive the prediction returned by the model.
@@ -202,13 +240,16 @@ The AciWebservice Class represents a machine learning model deployed as a web se
 `memory_gb` : The amount of memory (in GB) to allocate for this Webservice. Can be a decimal as well.
 `auth_enabled` : I set it to _True_ in order to enable auth for the Webservice.
 `enable_app_insights` : I set it to _True_ in order to enable AppInsights for this Webservice.
+
 ### Deployment
 Bringing all of the above together, here is the actual deployment in action:
 ![Model deployment](img/MD01.JPG?raw=true "Model deployment")
+
 _Best AutoML model deployed (Azure Machine Learning Studio)_
 ![Best model deployment](img/BM01.JPG?raw=true "Best model deployment")
 Deployment takes some time to conclude, but when it finishes successfully the ACI web service has a status of ***Healthy*** and the model is deployed correctly. We can now move to the next step of actually testing the endpoint.
-### Consuming/testing the endpoint (ACI service)
+
+### Consuming/testing the REST API Endpoint(ACI service)
 _Endpoint (Azure Machine Learning Studio)_
 ![ACI service](img/ACI01.JPG?raw=true "ACI service")
 After the successful deployment of the model and with a _Healthy_ service, I can print the _scoring URI_, the _Swagger URI_ and the _primary authentication key_:
