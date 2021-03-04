@@ -17,7 +17,7 @@ The diagram below is a visualization of the rough overview of the operations tha
 ![Project Workflow](img/Project_workflow.JPG?raw=true "Project Workflow") 
 
 Equivalent typical Azure ML Architecture as below:
-![Azure Architecture](img/Azure Architecture.JPG?raw=true "Azure ML Project Workflow") 
+![Azure Architecture](img/azure_architecture.JPG?raw=true "Azure ML Project Workflow") 
 
 ## Project Set Up and Installation
 In order to run the project in Azure Machine Learning Studio, we will need the two Jupyter Notebooks:
