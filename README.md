@@ -15,15 +15,21 @@ The current project uses machine learning to predict patients’ survival based 
 I create two models in the environment of Azure Machine Learning Studio: one using Automated Machine Learning (i.e. AutoML) and one customized model whose hyperparameters are tuned using HyperDrive. I then compare the performance of both models and deploy the best performing model as a service using Azure Container Instances (ACI).
 The diagram below is a visualization of the rough overview of the operations that take place in this project:
 ![Project Workflow](img/Project_workflow.JPG?raw=true "Project Workflow") 
+
+Equivalent typical Azure ML Architecture as below:
+![Azure Architecture](img/Azure Architecture.JPG?raw=true "Azure ML Project Workflow") 
+
 ## Project Set Up and Installation
 In order to run the project in Azure Machine Learning Studio, we will need the two Jupyter Notebooks:
 - `automl.ipynb`: for the AutoML experiment;
 - `hyperparameter_tuning.ipynb`: for the HyperDrive experiment.
+
 The following files are also necessary:
 - `heart_failure_clinical_records_dataset.csv`: the dataset file. It can also be taken directly from Kaggle; 
 - `train.py`: a basic script for manipulating the data used in the HyperDrive experiment;
 - `score.py`: the script used to deploy the model which is downloaded from within Azure Machine Learning Studio; &
 - `env.yml`: the environment file which is also downloaded from within Azure Machine Learning Studio.
+
 ## Dataset
 ### Overview
 Cardiovascular diseases (CVDs) kill approximately 18 million people globally every year, being the number 1 cause of death globally. Heart failure is one of the two ways CVDs exhibit (the other one being myocardial infarctions) and occurs when the heart cannot pump enough blood to meet the needs of the body. People with cardiovascular disease or who are at high cardiovascular risk need early detection and management wherein Machine Learning would be of great help. This is what this project attempts to do: create an ML model that could help predicting patients’ survival based on their medical data.
@@ -213,29 +219,26 @@ In order to request data, the REST API expects the body of the request to be a J
 }
 ```
 In our case:
-
-![Data structure](img/ACI04.jfif.JPG?raw=true "Data structure")
 ![Data structure](img/ACI04.jfif?raw=true "Data structure")
 
 The data is then converted to JSON string format:
-
-![Conversion to JSON string format](img/ACI05.jfif?raw=true "Conversion to JSON string format")
 ![Conversion to JSON string format](img/JSON1.jpg?raw=true "Conversion to JSON string format")
 
 We set the content type:
-
 ![Setting the content type](img/ACI07.jfif?raw=true "Setting the content type")
+
 ![Setting the content type](img/ACI06.jfif?raw=true "Setting the content type")
 
 Finally, we make the request and print the response on screen:
-
 ![Request and response](img/ACI07.jfif?raw=true "Request and response")
+
 ## Screen Recording
 The screen recording can be found [here](https://youtu.be/5tuz2Itq0Ms) and it shows the project in action. 
 More specifically, the screencast demonstrates:
 - A working model
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
+
 ## Comments and future improvements
 * The first factor that could improve the model is increasing the training time. This suggestion might be seen as a no-brainer, but it would also increase costs and this is a limitation that can be very difficult to overcome: there must always be a balance between minimum required accuracy and assigned budget.
 * Continuing the above point, it would be great to be able to experiment more with the hyperparameters chosen for the HyperDrive model or even try running it with more of the available hyperparameters, with less time contraints.
@@ -245,6 +248,7 @@ More specifically, the screencast demonstrates:
 > _Random Forests [...] turned out to be the top performing classifier on the complete dataset_
 I would love to further explore on this in order to create a model with higher accuracy that would give better and more reliable results, with potential practical benefits in the field of medicine.  
 * The question of how much training data is required for machine learning is always valid and, by all means, the dataset used here is rather small and geographically limited: it contains the medical records of only 299 patients and comes from only a specific geographical area. Increasing the sample size can mean higher level of accuracy and more reliable results. Plus, a dataset including data from patients from around the world would also be more reliable as it would compensate for factors specific to geographical regions.
+
 ## References
 - Udacity Nanodegree material
 - [Heart Failure Prediction Dataset](https://www.kaggle.com/andrewmvd/heart-failure-clinical-data)
