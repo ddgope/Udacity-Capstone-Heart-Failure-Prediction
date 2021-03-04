@@ -33,7 +33,9 @@ The following files are also necessary:
 ## Dataset
 ### Overview
 Cardiovascular diseases (CVDs) kill approximately 18 million people globally every year, being the number 1 cause of death globally. Heart failure is one of the two ways CVDs exhibit (the other one being myocardial infarctions) and occurs when the heart cannot pump enough blood to meet the needs of the body. People with cardiovascular disease or who are at high cardiovascular risk need early detection and management wherein Machine Learning would be of great help. This is what this project attempts to do: create an ML model that could help predicting patients’ survival based on their medical data.
-The dataset used is taken from [Kaggle](https://www.kaggle.com/andrewmvd/heart-failure-clinical-data) and -as we can read in the original [Research article](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5)- the data comes from 299 patients with heart failure collected at the Faisalabad Institute of Cardiology and at the Allied Hospital in Faisalabad (Punjab, Pakistan), during April–December 2015. The patients consisted of 105 women and 194 men, and their ages range between 40 and 95 years old.
+
+The dataset used is taken from [Kaggle](https://www.kaggle.com/andrewmvd/heart-failure-clinical-data) and the data comes from 299 patients with heart failure collected at the Faisalabad Institute of Cardiology and at the Allied Hospital in Faisalabad,Pakistan, during April–December 2015. The patients consisted of 105 women and 194 men, and their ages range between 40 and 95 years old.
+
 The dataset contains 13 features:
 | Feature | Explanation | Measurement |
 | :---: | :---: | :---: |
@@ -50,20 +52,26 @@ The dataset contains 13 features:
 | *smoking* | Whether the patient smokes or not | Boolean (0=No, 1=Yes) |
 | *time* | Follow-up period | Days |
 | *DEATH_EVENT* | Whether the patient died during the follow-up period | Boolean (0=No, 1=Yes) |
+
 ### Task 
 The main task that I seek to solve with this project & dataset is to classify patients based on their odds of survival. The prediction is based on the first 12 features included in the above table, while the classification result is reflected in the last column named _Death event (target)_ and it is either `0` (_`no`_) or `1` (_`yes`_).
+
 ### Access
 First, I made the data publicly accessible in the current GitHub repository via this link:
 [https://raw.githubusercontent.com/ddgope/Udacity-Capstone-Heart-Failure-Prediction/master/heart_failure_clinical_records_dataset.csv](https://raw.githubusercontent.com/ddgope/Udacity-Capstone-Heart-Failure-Prediction/master/heart_failure_clinical_records_dataset.csv)
-and then create the dataset: 
+and then create the dataset:
 ![Dataset creation](img/00.JPG?raw=true "heart-failure-prediction dataset creation")
+
 As it is depicted below, the dataset is registered in Azure Machine Learning Studio:
+
 ***Registered datasets:*** _Dataset heart-failure-prediction registered_
 ![Registered datasets](img/01.JPG?raw=true "heart-failure-prediction dataset registered")
+
 I am also accessing the data directly via:
 ```
 data = pd.read_csv('./heart_failure_clinical_records_dataset.csv')
 ```
+
 ## Automated ML
 ***AutoML settings and configuration:***
 Below you can see an overview of the `automl` settings and configuration I used for the AutoML run:
