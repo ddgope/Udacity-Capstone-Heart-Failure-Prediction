@@ -268,15 +268,14 @@ In order to request data, the REST API expects the body of the request to be a J
         ]
 }
 ```
-In our case:
+Below is the data structure:
 ![Data structure](img/ACI04.jfif?raw=true "Data structure")
 
-The data is then converted to JSON string format:
+The data is then converted to JSON string format as below:
 ![Conversion to JSON string format](img/JSON1.JPG?raw=true "Conversion to JSON string format")
 
-We set the content type:
+JSON content type looks like as below:
 ![Setting the content type](img/ACI07.jfif?raw=true "Setting the content type")
-
 ![Setting the content type](img/ACI06.jfif?raw=true "Setting the content type")
 
 Finally, we make the request and print the response on screen:
@@ -285,8 +284,10 @@ Finally, we make the request and print the response on screen:
 ## Screen Recording
 The screen recording can be found [here](https://youtu.be/gFxeAVxdrUc) and it shows the project in action. 
 More specifically, the screencast demonstrates:
-- A working model
-- Demo of the deployed  model
+- What is the project about and what is execpted from predication
+- Two different types of Model using Hpyerparameter and AutoML
+- Find the best working model
+- Demo of the deployed best model
 - Demo of a sample request sent to the endpoint and its response
 
 ## Comments and future improvements
@@ -295,8 +296,6 @@ More specifically, the screencast demonstrates:
 * Another thing I would try is deploying the best models to the Edge using Azure IoT Edge and enabling logging in the deployed web apps.
 * I would certainly try to deploy the HyperDrive model as well, since the deployment procedure is a bit defferent than the one used for the AutoML model.
 * In the original Research article where this dataset was used it is mentioned that:
-> _Random Forests [...] turned out to be the top performing classifier on the complete dataset_
-I would love to further explore on this in order to create a model with higher accuracy that would give better and more reliable results, with potential practical benefits in the field of medicine.  
 * The question of how much training data is required for machine learning is always valid and, by all means, the dataset used here is rather small and geographically limited: it contains the medical records of only 299 patients and comes from only a specific geographical area. Increasing the sample size can mean higher level of accuracy and more reliable results. Plus, a dataset including data from patients from around the world would also be more reliable as it would compensate for factors specific to geographical regions.
 
 ## References
