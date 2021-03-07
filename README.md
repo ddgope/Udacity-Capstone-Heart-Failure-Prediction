@@ -295,8 +295,6 @@ More specifically, the screencast demonstrates:
 * Continuing the above point, it would be great to be able to experiment more with the hyperparameters chosen for the HyperDrive model or even try running it with more of the available hyperparameters, with less time contraints.
 * Another thing I would try is deploying the best models to the Edge using Azure IoT Edge and enabling logging in the deployed web apps.
 * I would certainly try to deploy the HyperDrive model as well, since the deployment procedure is a bit defferent than the one used for the AutoML model.
-* In the original Research article where this dataset was used it is mentioned that:
-* The question of how much training data is required for machine learning is always valid and, by all means, the dataset used here is rather small and geographically limited: it contains the medical records of only 299 patients and comes from only a specific geographical area. Increasing the sample size can mean higher level of accuracy and more reliable results. Plus, a dataset including data from patients from around the world would also be more reliable as it would compensate for factors specific to geographical regions.
 
 ## References
 - Udacity Nanodegree material
