@@ -15,6 +15,13 @@ The current project uses machine learning to predict patients’ survival based 
 I create two models in the environment of Azure Machine Learning Studio: one using Automated Machine Learning (i.e. AutoML) and one customized model whose hyperparameters are tuned using HyperDrive. I then compare the performance of both models and deploy the best performing model as a service using Azure Container Instances (ACI).
 The diagram below is a visualization of the rough overview of the operations that take place in this project:
 ![Project Workflow](img/final_project_workflow.JPG?raw=true "Project Workflow") 
+- [Deploying Machine Learning Models to Azure Kubernetes Service](https://clemenssiebler.com/deploying-machine-learning-models-to-azure-kubernetes-service/)
+- [Deploy a model to an Azure Kubernetes Service cluster](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-azure-kubernetes-service?tabs=python)
+- [How Azure Machine Learning Service deployment to Azure Kubernetes Service works](https://liupeirong.github.io/amlKubernetesDeployment/)
+- [End-to-End Pipeline Example on Azure](https://www.kubeflow.org/docs/azure/azureendtoend/)
+- [How to bring your Data Science Project in production](https://towardsdatascience.com/how-to-bring-your-data-science-project-in-production-b36ae4c02b46)
+- [Mounting Datasets to a Compute Instance in Azure Machine Learning](https://clemenssiebler.com/mount-datasets-compute-instance-azure-machine-learning/)
+- [Deploy and serve model from Azure Databricks onto Azure Machine Learning](https://www.iteblog.com/ppt/sparkaisummit-north-america-2020-iteblog/deploy-and-serve-model-from-azure-databricks-onto-azure-machine-learning-iteblog.com.pdf)
 
 Equivalent typical Azure ML Architecture as below:
 ![Azure Architecture](img/azure_architecture.JPG?raw=true "Azure ML Project Workflow") 
@@ -295,6 +302,7 @@ More specifically, the screencast demonstrates:
 * Continuing the above point, it would be great to be able to experiment more with the hyperparameters chosen for the HyperDrive model or even try running it with more of the available hyperparameters, with less time contraints.
 * Another thing I would try is deploying the best models to the Edge using Azure IoT Edge and enabling logging in the deployed web apps.
 * I would certainly try to deploy the HyperDrive model as well, since the deployment procedure is a bit defferent than the one used for the AutoML model.
+
 
 ## References
 - Udacity Nanodegree material
