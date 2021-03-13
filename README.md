@@ -26,7 +26,8 @@ Refernce for study
 - [Deploy and serve model from Azure Databricks onto Azure Machine Learning](https://www.iteblog.com/ppt/sparkaisummit-north-america-2020-iteblog/deploy-and-serve-model-from-azure-databricks-onto-azure-machine-learning-iteblog.com.pdf)
 - [Azure Machine Learning Services: a complete toolbox for AI](https://www.element61.be/en/resource/azure-machine-learning-services-complete-toolbox-ai)
 - [Using AI-Demand Forecasting to drive Supply Chain Planning](https://www.element61.be/en/project/using-ai-demand-forecasting-drive-supply-chain-planning)
-
+- [Azure Container Solutions](https://www.wintellect.com/wp-content/uploads/2020/04/containers.pdf)
+- 
 Equivalent typical Azure ML Architecture as below:
 ![Azure Architecture](img/azure_architecture.JPG?raw=true "Azure ML Project Workflow") 
 
