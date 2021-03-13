@@ -15,6 +15,8 @@ The current project uses machine learning to predict patients’ survival based 
 I create two models in the environment of Azure Machine Learning Studio: one using Automated Machine Learning (i.e. AutoML) and one customized model whose hyperparameters are tuned using HyperDrive. I then compare the performance of both models and deploy the best performing model as a service using Azure Container Instances (ACI).
 The diagram below is a visualization of the rough overview of the operations that take place in this project:
 ![Project Workflow](img/final_project_workflow.JPG?raw=true "Project Workflow") 
+
+Refernce for study
 - [Deploying Machine Learning Models to Azure Kubernetes Service](https://clemenssiebler.com/deploying-machine-learning-models-to-azure-kubernetes-service/)
 - [Deploy a model to an Azure Kubernetes Service cluster](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-azure-kubernetes-service?tabs=python)
 - [How Azure Machine Learning Service deployment to Azure Kubernetes Service works](https://liupeirong.github.io/amlKubernetesDeployment/)
@@ -22,6 +24,8 @@ The diagram below is a visualization of the rough overview of the operations tha
 - [How to bring your Data Science Project in production](https://towardsdatascience.com/how-to-bring-your-data-science-project-in-production-b36ae4c02b46)
 - [Mounting Datasets to a Compute Instance in Azure Machine Learning](https://clemenssiebler.com/mount-datasets-compute-instance-azure-machine-learning/)
 - [Deploy and serve model from Azure Databricks onto Azure Machine Learning](https://www.iteblog.com/ppt/sparkaisummit-north-america-2020-iteblog/deploy-and-serve-model-from-azure-databricks-onto-azure-machine-learning-iteblog.com.pdf)
+- [Azure Machine Learning Services: a complete toolbox for AI](https://www.element61.be/en/resource/azure-machine-learning-services-complete-toolbox-ai)
+- [Using AI-Demand Forecasting to drive Supply Chain Planning](https://www.element61.be/en/project/using-ai-demand-forecasting-drive-supply-chain-planning)
 
 Equivalent typical Azure ML Architecture as below:
 ![Azure Architecture](img/azure_architecture.JPG?raw=true "Azure ML Project Workflow") 
