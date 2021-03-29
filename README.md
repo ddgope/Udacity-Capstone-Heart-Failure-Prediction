@@ -29,6 +29,7 @@ Refernce for study
 - [Azure Container Solutions](https://www.wintellect.com/wp-content/uploads/2020/04/containers.pdf)
 - [Databricks MLOps - Deploy Machine Learning Model On Azure](https://www.youtube.com/watch?v=fv3p3r3ByfY)
 - [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course)
+- [MLOps](https://azure.microsoft.com/en-us/services/machine-learning/mlops/#resources)
 
 Equivalent typical Azure ML Architecture as below:
 ![Azure Architecture](img/azure_architecture.JPG?raw=true "Azure ML Project Workflow") 
